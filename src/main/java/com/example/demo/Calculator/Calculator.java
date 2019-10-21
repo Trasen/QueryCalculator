@@ -16,8 +16,7 @@ public class Calculator {
         String valueConstructor = "";
 
         Double addition = 0D;
-
-
+        
         for (int i = 0; i < filteredQuery.length(); i++) {
 
             String character = String.valueOf(filteredQuery.charAt(i));
