@@ -50,7 +50,7 @@ function makeRestCall(requestType, address, path, query, target) {
     let queryResponse;
     
     let request = new XMLHttpRequest();
-        
+        console.log(requestType + address + '/' + path + '?' + query);
         request.open(requestType, address + '/' + path + '?' + query);
         request.onload = function() {
             document.getElementById(target).innerHTML = this.response;
@@ -58,9 +58,5 @@ function makeRestCall(requestType, address, path, query, target) {
         
         request.send();
     }
-    
-    makeRestCall(requestType.GET, 'http://localhost:8080', 'addition', 'firstValue=5&secondValue=5', 'addition');
-    makeRestCall(requestType.GET, 'http://localhost:8080', 'multiplication', 'firstValue=5&secondValue=5', 'multiplication');
-    makeRestCall(requestType.GET, 'http://localhost:8080', 'division', 'firstValue=5&secondValue=5', 'division');
 
 </script>

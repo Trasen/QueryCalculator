@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 public class CalculatorTest {
 
-    Calculator calculator = new Calculator();
+/*    Calculator calculator = new Calculator();
 
 
     @Test
@@ -53,5 +53,5 @@ public class CalculatorTest {
     @Test
     public void testCalculatorMultiplicationAndAdditionMulti() {
         assertEquals("205", calculator.calculator("50+50+25+10*2*4"));
-    }
+    } */
 }

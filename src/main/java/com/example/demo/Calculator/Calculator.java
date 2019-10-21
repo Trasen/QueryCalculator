@@ -1,29 +1,13 @@
-package com.example.demo.RestControllers;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+package com.example.demo.Calculator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
 public class Calculator {
 
-    private boolean isDouble(Number number) {
+    public String calculate(String query) {
 
-        if ((number.doubleValue() % 1) == 0) {
-            return false;
-        } else {
-            return true;
-
-        }
-    }
-
-    @RequestMapping("/calculator")
-    public String calculator(@RequestParam(value = "query", defaultValue = "0") String query) {
-
-        String filteredQuery = query.replaceAll(" ", "").replaceAll("[^0-9.\\+\\*]", "");
+        String filteredQuery = query.replaceAll(" ", "").replaceAll("[^0-9.+*]", "");
 
         List<Double> additions = new ArrayList<>();
         List<Double> multiplication = new ArrayList<>();
@@ -34,11 +18,11 @@ public class Calculator {
         Double addition = 0D;
 
 
-        for(int i = 0; i < filteredQuery.length(); i++) {
+        for (int i = 0; i < filteredQuery.length(); i++) {
 
             String character = String.valueOf(filteredQuery.charAt(i));
 
-            switch(character) {
+            switch (character) {
 
                 case ".":
                 case "0":
@@ -54,11 +38,11 @@ public class Calculator {
 
                     valueConstructor += character;
 
-                    if(previousOperator.matches("\\+") && i == filteredQuery.length() - 1) {
+                    if (previousOperator.matches("\\+") && i == filteredQuery.length() - 1) {
                         additions.add(Double.valueOf(valueConstructor));
                     }
 
-                    if(previousOperator.matches("\\*") && i == filteredQuery.length() - 1) {
+                    if (previousOperator.matches("\\*") && i == filteredQuery.length() - 1) {
                         multiplication.add(Double.valueOf(valueConstructor));
                     }
 
@@ -66,32 +50,32 @@ public class Calculator {
 
                 case "+":
 
-                previousOperator = "+";
-                additions.add(Double.valueOf(valueConstructor));
-                valueConstructor = "";
-                break;
+                    previousOperator = "+";
+                    additions.add(Double.valueOf(valueConstructor));
+                    valueConstructor = "";
+                    break;
 
                 case "*":
 
-                previousOperator = "*";
-                multiplication.add(Double.valueOf(valueConstructor));
-                valueConstructor = "";
-                break;
+                    previousOperator = "*";
+                    multiplication.add(Double.valueOf(valueConstructor));
+                    valueConstructor = "";
+                    break;
 
             }
         }
 
-        for(int i = 0; i < additions.size(); i++) {
+        for (int i = 0; i < additions.size(); i++) {
             System.out.println(additions.get(i));
             addition += additions.get(i);
         }
 
         Double tmpMult = 0D;
 
-        for(int i = 0; i < multiplication.size(); i++) {
+        for (int i = 0; i < multiplication.size(); i++) {
 
-            if(i == 0) {
-                tmpMult += multiplication.get(i) * multiplication.get(i+1);
+            if (i == 0) {
+                tmpMult += multiplication.get(i) * multiplication.get(i + 1);
                 i = 1;
             } else {
                 tmpMult = tmpMult * multiplication.get(i);
@@ -102,10 +86,20 @@ public class Calculator {
 
         Number returnValue = addition;
 
-        if(isDouble(returnValue)) {
+        if (isDouble(returnValue)) {
             return String.valueOf(returnValue.doubleValue());
         } else {
             return String.valueOf(returnValue.longValue());
+
+        }
+    }
+
+    private boolean isDouble(Number number) {
+
+        if ((number.doubleValue() % 1) == 0) {
+            return false;
+        } else {
+            return true;
 
         }
     }
