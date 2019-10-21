@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    
+    
+        <script>  
+    function addition() {
+        var request = new XMLHttpRequest()
+request.open('GET', 'http://localhost:8080/addition?firstValue=10&secondValue=20', true)
+request.onload = function() {
+  document.getElementById('container').innerHTML = this.response;
+}
+        request.send()
+        }
+</script>
+    
+    
+<p id="calculator">Addition</p>
+    
+    <input id='text' type="text" placeholder="Write a number"/> <button id="button" onclick="add()" >Press me</button>
+
+</body>
+
+</html>
+
+<script>
+    
+    function add() {
+        
+        let adderNumber = document.getElementById('text').value;
+
+        makeRestCall(requestType.GET, 'http://localhost:8080', 'calculator', 'query=' + adderNumber, 'calculator');
+        
+    }
+    
+</script>
+
+<script>
+    
+  const requestType = {
+      GET: 'GET'
+}
+
+function makeRestCall(requestType, address, path, query, target) {
+    
+    let queryResponse;
+    
+    let request = new XMLHttpRequest();
+        
+        request.open(requestType, address + '/' + path + '?' + query);
+        request.onload = function() {
+            document.getElementById(target).innerHTML = this.response;
+        }
+        
+        request.send();
+    }
+    
+    makeRestCall(requestType.GET, 'http://localhost:8080', 'addition', 'firstValue=5&secondValue=5', 'addition');
+    makeRestCall(requestType.GET, 'http://localhost:8080', 'multiplication', 'firstValue=5&secondValue=5', 'multiplication');
+    makeRestCall(requestType.GET, 'http://localhost:8080', 'division', 'firstValue=5&secondValue=5', 'division');
+
+</script>
