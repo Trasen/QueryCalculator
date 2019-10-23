@@ -3,6 +3,7 @@ package com.example.demo.Calculator;
 import java.util.ArrayList;
 import java.util.List;
 
+@Deprecated
 public class CalculatorImpl implements Calculator {
 
     @Override
