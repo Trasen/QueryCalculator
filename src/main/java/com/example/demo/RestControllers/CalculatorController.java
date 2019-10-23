@@ -1,6 +1,7 @@
 package com.example.demo.RestControllers;
 
 import com.example.demo.Calculator.Calculator;
+import com.example.demo.Calculator.CalculatorImpl;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +17,7 @@ public class CalculatorController {
     @RequestMapping(value = "/calculator", method = RequestMethod.GET)
     public String calculator(@RequestParam(value = "query", defaultValue = "0") String query, HttpServletRequest request) {
 
-        Calculator calculator = new Calculator();
+        Calculator calculator = new CalculatorImpl();
 
         return calculator.calculate(request.getQueryString());
 

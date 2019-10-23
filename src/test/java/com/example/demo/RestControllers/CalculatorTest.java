@@ -1,13 +1,14 @@
 package com.example.demo.RestControllers;
 
 import com.example.demo.Calculator.Calculator;
+import com.example.demo.Calculator.CalculatorImpl;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class CalculatorTest {
 
-    Calculator calculator = new Calculator();
+    Calculator calculator = new CalculatorImpl();
 
 
     @Test
