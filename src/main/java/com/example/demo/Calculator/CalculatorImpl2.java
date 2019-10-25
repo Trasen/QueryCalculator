@@ -8,6 +8,9 @@ public class CalculatorImpl2 implements Calculator {
     @Override
     public String calculate(String query) {
 
+        //Lazy fix, needs to be manually filtered to be run on AWS LAMBDA to not risk a DDOS regex injection.
+        query = query.replaceAll("[^0-9*+/]", "");
+
         query = this.calculateDivision(query);
         query = this.calculateMultiplication(query);
         query = this.calculateAddition(query);
@@ -128,6 +131,7 @@ public class CalculatorImpl2 implements Calculator {
             }
 
             if (indexTracker.size() == 2) {
+                //Should be possible to pass an interface here to manage calculations
                 Number number1 = Double.valueOf(query.substring(indexTracker.get(0).indexStart, indexTracker.get(0).indexEnd));
                 Number number2 = Double.valueOf(query.substring(indexTracker.get(1).indexStart, indexTracker.get(1).indexEnd));
 

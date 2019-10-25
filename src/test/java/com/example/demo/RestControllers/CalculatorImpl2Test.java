@@ -41,4 +41,15 @@ public class CalculatorImpl2Test {
         assertEquals("8700", calculator.calculate("200+100+400+200*200/5"));
     }
 
+    @Test
+    public void testCalculatorMultiSwappedMixed() {
+        assertEquals("940", calculator.calculate("200+100+200/5+400+200"));
+    }
+
+    @Test
+    public void testCalculatorMultiSwappedMixedMixed() {
+        assertEquals("940", calculator.calculate("200+100+200/5+400+200"));
+    }
+
+
 }

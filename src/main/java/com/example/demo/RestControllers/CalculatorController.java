@@ -19,7 +19,7 @@ public class CalculatorController {
 
         Calculator calculator = new CalculatorImpl2();
         //Using the request queryString seems to be the only way for SpringBoot to allow '+' signs to be sent. Query will filter this away.
-        return calculator.calculate(request.getQueryString());
-
+        String pureQuery = request.getQueryString();
+        return calculator.calculate(pureQuery);
     }
 }
