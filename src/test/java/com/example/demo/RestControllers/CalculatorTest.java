@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+@Deprecated
 public class CalculatorTest {
 
     Calculator calculator = new CalculatorImpl();

@@ -12,7 +12,6 @@ public class CalculatorImpl2 implements Calculator {
         query = this.calculateMultiplication(query);
         query = this.calculateAddition(query);
 
-
         Number result = Double.valueOf(query);
 
         if (this.isDouble(result)) {
@@ -37,6 +36,7 @@ public class CalculatorImpl2 implements Calculator {
             switch (currentCharacter) {
 
                 case '/':
+
                     indexTracker.add(new DividerTracker(lastDividerIndex, i));
                     lastDividerIndex = i + 1;
 
@@ -54,6 +54,10 @@ public class CalculatorImpl2 implements Calculator {
 
                     }
                     break;
+                case '*':
+                case '+':
+                lastDividerIndex = i+1;
+                    break;
             }
 
             if (i == query.length() - 1) {
@@ -68,7 +72,6 @@ public class CalculatorImpl2 implements Calculator {
 
                 stringBuilder.replace(indexTracker.get(0).indexStart, indexTracker.get(1).indexEnd, tmp);
                 query = stringBuilder.toString();
-                System.out.println(query);
 
                 lastDividerIndex = 0;
                 i = 0;
@@ -112,6 +115,11 @@ public class CalculatorImpl2 implements Calculator {
                         }
 
                     }
+
+                    break;
+                case '/':
+                case '+':
+                    lastDividerIndex = i+1;
                     break;
             }
 
@@ -127,7 +135,6 @@ public class CalculatorImpl2 implements Calculator {
 
                 stringBuilder.replace(indexTracker.get(0).indexStart, indexTracker.get(1).indexEnd, tmp);
                 query = stringBuilder.toString();
-                System.out.println(query);
 
                 lastDividerIndex = 0;
                 i = 0;
@@ -171,6 +178,10 @@ public class CalculatorImpl2 implements Calculator {
 
                     }
                     break;
+                case '*':
+                case '/':
+                    lastDividerIndex = i+1;
+                    break;
             }
 
             if (i == query.length() - 1) {
@@ -185,7 +196,6 @@ public class CalculatorImpl2 implements Calculator {
 
                 stringBuilder.replace(indexTracker.get(0).indexStart, indexTracker.get(1).indexEnd, tmp);
                 query = stringBuilder.toString();
-                System.out.println(query);
 
                 lastDividerIndex = 0;
                 i = 0;

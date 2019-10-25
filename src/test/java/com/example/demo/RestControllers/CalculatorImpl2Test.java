@@ -36,10 +36,9 @@ public class CalculatorImpl2Test {
         assertEquals("2100", calculator.calculate("100/10/100*1000+2000"));
     }
 
-    /*@Test
+    @Test
     public void testCalculatorMultiSwapped() {
-
-        assertEquals("2100", calculator.calculate("200+100+400+200*200/5"));
-    } */
+        assertEquals("8700", calculator.calculate("200+100+400+200*200/5"));
+    }
 
 }
