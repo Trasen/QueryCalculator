@@ -29,7 +29,6 @@ public class CalculatorImpl3 implements Calculator {
         query = calculation.calculate(query, CalculationType.SUBSTRACTION);
         System.out.println(query);
 
-
         Number response = Double.valueOf(query);
 
         if (isDouble(response)) {

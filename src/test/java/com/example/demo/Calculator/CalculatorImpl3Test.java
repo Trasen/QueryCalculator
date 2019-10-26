@@ -54,6 +54,7 @@ public class CalculatorImpl3Test {
 
     @Test
     public void testCalculatorSubstrationDivisionMultiplicationAndAddition() {
+        //TODO:: Not sure about this result - a lot of calculators online gives -7300 as a result. Might need to check this out.
         assertEquals("-8500", calculator.calculate("100-100 * 400 / 5 + 600"));
     }
 
