@@ -1,7 +1,7 @@
 package com.example.demo.Calculator.DeprecatedCalculators;
 
 import com.example.demo.Calculator.Calculator;
-import com.example.demo.Calculator.Calculation.CalculationTypes.DividerTracker;
+import com.example.demo.Calculator.Calculation.OperatorTracker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,7 @@ public class CalculatorImpl2 implements Calculator {
         stringBuilder.append(query);
 
         Integer lastDividerIndex = 0;
-        List<DividerTracker> indexTracker = new ArrayList<>();
+        List<OperatorTracker> indexTracker = new ArrayList<>();
 
         for (int i = 0; i < query.length(); i++) {
 
@@ -47,7 +47,7 @@ public class CalculatorImpl2 implements Calculator {
 
                 case '/':
 
-                    indexTracker.add(new DividerTracker(lastDividerIndex, i));
+                    indexTracker.add(new OperatorTracker(lastDividerIndex, i));
                     lastDividerIndex = i + 1;
 
                     for (int j = i + 1; j < query.length(); j++) {
@@ -57,7 +57,7 @@ public class CalculatorImpl2 implements Calculator {
                             case '+':
                             case '*':
                             case '/':
-                                indexTracker.add(new DividerTracker(lastDividerIndex, j));
+                                indexTracker.add(new OperatorTracker(lastDividerIndex, j));
                                 lastDividerIndex = j + 1;
                                 j = query.length();
                         }
@@ -71,7 +71,7 @@ public class CalculatorImpl2 implements Calculator {
             }
 
             if (i == query.length() - 1) {
-                indexTracker.add(new DividerTracker(lastDividerIndex, i + 1));
+                indexTracker.add(new OperatorTracker(lastDividerIndex, i + 1));
             }
 
             if (indexTracker.size() == 2) {
@@ -100,7 +100,7 @@ public class CalculatorImpl2 implements Calculator {
         stringBuilder.append(query);
 
         Integer lastDividerIndex = 0;
-        List<DividerTracker> indexTracker = new ArrayList<>();
+        List<OperatorTracker> indexTracker = new ArrayList<>();
 
         for (int i = 0; i < query.length(); i++) {
 
@@ -109,7 +109,7 @@ public class CalculatorImpl2 implements Calculator {
             switch (currentCharacter) {
 
                 case '*':
-                    indexTracker.add(new DividerTracker(lastDividerIndex, i));
+                    indexTracker.add(new OperatorTracker(lastDividerIndex, i));
                     lastDividerIndex = i + 1;
 
                     for (int j = i + 1; j < query.length(); j++) {
@@ -119,7 +119,7 @@ public class CalculatorImpl2 implements Calculator {
                             case '+':
                             case '*':
                             case '/':
-                                indexTracker.add(new DividerTracker(lastDividerIndex, j));
+                                indexTracker.add(new OperatorTracker(lastDividerIndex, j));
                                 lastDividerIndex = j + 1;
                                 j = query.length();
                         }
@@ -134,7 +134,7 @@ public class CalculatorImpl2 implements Calculator {
             }
 
             if (i == query.length() - 1) {
-                indexTracker.add(new DividerTracker(lastDividerIndex, i + 1));
+                indexTracker.add(new OperatorTracker(lastDividerIndex, i + 1));
             }
 
             if (indexTracker.size() == 2) {
@@ -163,7 +163,7 @@ public class CalculatorImpl2 implements Calculator {
         stringBuilder.append(query);
 
         Integer lastDividerIndex = 0;
-        List<DividerTracker> indexTracker = new ArrayList<>();
+        List<OperatorTracker> indexTracker = new ArrayList<>();
 
         for (int i = 0; i < query.length(); i++) {
 
@@ -172,7 +172,7 @@ public class CalculatorImpl2 implements Calculator {
             switch (currentCharacter) {
 
                 case '+':
-                    indexTracker.add(new DividerTracker(lastDividerIndex, i));
+                    indexTracker.add(new OperatorTracker(lastDividerIndex, i));
                     lastDividerIndex = i + 1;
 
                     for (int j = i + 1; j < query.length(); j++) {
@@ -182,7 +182,7 @@ public class CalculatorImpl2 implements Calculator {
                             case '+':
                             case '*':
                             case '/':
-                                indexTracker.add(new DividerTracker(lastDividerIndex, j));
+                                indexTracker.add(new OperatorTracker(lastDividerIndex, j));
                                 lastDividerIndex = j + 1;
                                 j = query.length();
                         }
@@ -196,7 +196,7 @@ public class CalculatorImpl2 implements Calculator {
             }
 
             if (i == query.length() - 1) {
-                indexTracker.add(new DividerTracker(lastDividerIndex, i + 1));
+                indexTracker.add(new OperatorTracker(lastDividerIndex, i + 1));
             }
 
             if (indexTracker.size() == 2) {

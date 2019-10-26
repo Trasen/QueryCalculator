@@ -1,11 +1,11 @@
-package com.example.demo.Calculator.Calculation.CalculationTypes;
+package com.example.demo.Calculator.Calculation;
 
-public class DividerTracker {
+public class OperatorTracker {
 
     private int indexStart;
     private int indexEnd;
 
-    public DividerTracker(int indexStart, int indexEnd) {
+    public OperatorTracker(int indexStart, int indexEnd) {
         this.indexStart = indexStart;
         this.indexEnd = indexEnd;
     }
