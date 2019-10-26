@@ -1,7 +1,7 @@
-package com.example.demo.Calculator.DeprecatedCalculators;
+package com.example.querycalculator.Calculator.DeprecatedCalculators;
 
-import com.example.demo.Calculator.Calculator;
-import com.example.demo.Calculator.Calculation.OperatorTracker;
+import com.example.querycalculator.Calculator.Calculator;
+import com.example.querycalculator.Calculator.Calculation.OperatorTracker;
 
 import java.util.ArrayList;
 import java.util.List;

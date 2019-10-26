@@ -1,8 +1,8 @@
-package com.example.demo.Calculator;
+package com.example.querycalculator.Calculator;
 
-import com.example.demo.Calculator.Calculation.Calculation;
-import com.example.demo.Calculator.Calculation.CalculationImpl;
-import com.example.demo.Calculator.Calculation.CalculationTypes.CalculationType;
+import com.example.querycalculator.Calculator.Calculation.Calculation;
+import com.example.querycalculator.Calculator.Calculation.CalculationImpl;
+import com.example.querycalculator.Calculator.Calculation.CalculationTypes.CalculationType;
 
 public class CalculatorImpl3 implements Calculator {
 

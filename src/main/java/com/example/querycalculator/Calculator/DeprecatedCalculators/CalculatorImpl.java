@@ -1,6 +1,6 @@
-package com.example.demo.Calculator.DeprecatedCalculators;
+package com.example.querycalculator.Calculator.DeprecatedCalculators;
 
-import com.example.demo.Calculator.Calculator;
+import com.example.querycalculator.Calculator.Calculator;
 
 import java.util.ArrayList;
 import java.util.List;

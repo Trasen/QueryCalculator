@@ -1,4 +1,4 @@
-package com.example.demo.Calculator.Calculation;
+package com.example.querycalculator.Calculator.Calculation;
 
 public class OperatorTracker {
 

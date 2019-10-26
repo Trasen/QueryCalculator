@@ -1,7 +1,7 @@
-package com.example.demo.RestControllers;
+package com.example.querycalculator.RestControllers;
 
-import com.example.demo.Calculator.Calculator;
-import com.example.demo.Calculator.CalculatorImpl3;
+import com.example.querycalculator.Calculator.Calculator;
+import com.example.querycalculator.Calculator.CalculatorImpl3;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;

@@ -1,7 +1,6 @@
-package com.example.demo.Calculator;
+package com.example.querycalculator.Calculator;
 
-import com.example.demo.Calculator.Calculator;
-import com.example.demo.Calculator.DeprecatedCalculators.CalculatorImpl2;
+import com.example.querycalculator.Calculator.DeprecatedCalculators.CalculatorImpl2;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

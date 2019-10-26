@@ -1,4 +1,4 @@
-package com.example.demo.Calculator.Calculation.CalculationTypes;
+package com.example.querycalculator.Calculator.Calculation.CalculationTypes;
 
 public enum CalculationType {
 

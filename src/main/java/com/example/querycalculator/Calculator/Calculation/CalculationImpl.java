@@ -1,6 +1,6 @@
-package com.example.demo.Calculator.Calculation;
+package com.example.querycalculator.Calculator.Calculation;
 
-import com.example.demo.Calculator.Calculation.CalculationTypes.CalculationType;
+import com.example.querycalculator.Calculator.Calculation.CalculationTypes.CalculationType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +49,6 @@ public class CalculationImpl implements Calculation {
                 i = 0;
                 operatorTrackers.clear();
             }
-
         }
 
         return query;
