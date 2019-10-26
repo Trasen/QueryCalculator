@@ -1,16 +1,12 @@
-package com.example.demo.RestControllers;
+package com.example.demo.Calculator;
 
-import com.example.demo.Calculator.Calculator;
-import com.example.demo.Calculator.CalculatorImpl2;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
-public class CalculatorImpl2Test {
+public class CalculatorImpl3Test {
 
-
-    Calculator calculator = new CalculatorImpl2();
-
+    Calculator calculator = new CalculatorImpl3();
 
     @Test
     public void testCalculatorSingleDivision() {
@@ -51,5 +47,19 @@ public class CalculatorImpl2Test {
         assertEquals("940", calculator.calculate("200+100+200/5+400+200"));
     }
 
+    @Test
+    public void testCalculatorSubstration() {
+        assertEquals("0", calculator.calculate("100-100"));
+    }
 
+    @Test
+    public void testCalculatorSubstrationDivisionMultiplicationAndAddition() {
+        assertEquals("-8500", calculator.calculate("100-100 * 400 / 5 + 600"));
+    }
+
+    @Test
+    public void testPowerOf() {
+        assertEquals("4", calculator.calculate("2^2"));
+
+    }
 }

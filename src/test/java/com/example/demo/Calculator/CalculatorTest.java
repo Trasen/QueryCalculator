@@ -1,7 +1,7 @@
-package com.example.demo.RestControllers;
+package com.example.demo.Calculator;
 
 import com.example.demo.Calculator.Calculator;
-import com.example.demo.Calculator.CalculatorImpl;
+import com.example.demo.Calculator.DeprecatedCalculators.CalculatorImpl;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

@@ -1,9 +1,15 @@
-package com.example.demo.Calculator;
+package com.example.demo.Calculator.DeprecatedCalculators;
+
+import com.example.demo.Calculator.Calculator;
+import com.example.demo.Calculator.Calculation.CalculationTypes.DividerTracker;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Deprecated
 public class CalculatorImpl2 implements Calculator {
+
+
 
     @Override
     public String calculate(String query) {
@@ -14,6 +20,7 @@ public class CalculatorImpl2 implements Calculator {
         query = this.calculateDivision(query);
         query = this.calculateMultiplication(query);
         query = this.calculateAddition(query);
+
 
         Number result = Double.valueOf(query);
 
@@ -68,12 +75,12 @@ public class CalculatorImpl2 implements Calculator {
             }
 
             if (indexTracker.size() == 2) {
-                Number number1 = Double.valueOf(query.substring(indexTracker.get(0).indexStart, indexTracker.get(0).indexEnd));
-                Number number2 = Double.valueOf(query.substring(indexTracker.get(1).indexStart, indexTracker.get(1).indexEnd));
+                Number number1 = Double.valueOf(query.substring(indexTracker.get(0).getIndexStart(), indexTracker.get(0).getIndexEnd()));
+                Number number2 = Double.valueOf(query.substring(indexTracker.get(1).getIndexStart(), indexTracker.get(1).getIndexEnd()));
 
                 String tmp = String.valueOf(number1.doubleValue() / number2.doubleValue());
 
-                stringBuilder.replace(indexTracker.get(0).indexStart, indexTracker.get(1).indexEnd, tmp);
+                stringBuilder.replace(indexTracker.get(0).getIndexStart(), indexTracker.get(1).getIndexEnd(), tmp);
                 query = stringBuilder.toString();
 
                 lastDividerIndex = 0;
@@ -132,12 +139,12 @@ public class CalculatorImpl2 implements Calculator {
 
             if (indexTracker.size() == 2) {
                 //Should be possible to pass an interface here to manage calculations
-                Number number1 = Double.valueOf(query.substring(indexTracker.get(0).indexStart, indexTracker.get(0).indexEnd));
-                Number number2 = Double.valueOf(query.substring(indexTracker.get(1).indexStart, indexTracker.get(1).indexEnd));
+                Number number1 = Double.valueOf(query.substring(indexTracker.get(0).getIndexStart(), indexTracker.get(0).getIndexEnd()));
+                Number number2 = Double.valueOf(query.substring(indexTracker.get(1).getIndexStart(), indexTracker.get(1).getIndexEnd()));
 
                 String tmp = String.valueOf(number1.doubleValue() * number2.doubleValue());
 
-                stringBuilder.replace(indexTracker.get(0).indexStart, indexTracker.get(1).indexEnd, tmp);
+                stringBuilder.replace(indexTracker.get(0).getIndexStart(), indexTracker.get(1).getIndexEnd(), tmp);
                 query = stringBuilder.toString();
 
                 lastDividerIndex = 0;
@@ -193,12 +200,12 @@ public class CalculatorImpl2 implements Calculator {
             }
 
             if (indexTracker.size() == 2) {
-                Number number1 = Double.valueOf(query.substring(indexTracker.get(0).indexStart, indexTracker.get(0).indexEnd));
-                Number number2 = Double.valueOf(query.substring(indexTracker.get(1).indexStart, indexTracker.get(1).indexEnd));
+                Number number1 = Double.valueOf(query.substring(indexTracker.get(0).getIndexStart(), indexTracker.get(0).getIndexEnd()));
+                Number number2 = Double.valueOf(query.substring(indexTracker.get(1).getIndexStart(), indexTracker.get(1).getIndexEnd()));
 
                 String tmp = String.valueOf(number1.doubleValue() + number2.doubleValue());
 
-                stringBuilder.replace(indexTracker.get(0).indexStart, indexTracker.get(1).indexEnd, tmp);
+               stringBuilder.replace(indexTracker.get(0).getIndexStart(), indexTracker.get(1).getIndexEnd(), tmp);
                 query = stringBuilder.toString();
 
                 lastDividerIndex = 0;
@@ -221,15 +228,4 @@ public class CalculatorImpl2 implements Calculator {
         }
     }
 }
-
-    class DividerTracker {
-
-        int indexStart;
-        int indexEnd;
-
-        public DividerTracker(int indexStart, int indexEnd) {
-            this.indexStart = indexStart;
-            this.indexEnd = indexEnd;
-        }
-    }
 

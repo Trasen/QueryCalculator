@@ -1,4 +1,6 @@
-package com.example.demo.Calculator;
+package com.example.demo.Calculator.DeprecatedCalculators;
+
+import com.example.demo.Calculator.Calculator;
 
 import java.util.ArrayList;
 import java.util.List;
