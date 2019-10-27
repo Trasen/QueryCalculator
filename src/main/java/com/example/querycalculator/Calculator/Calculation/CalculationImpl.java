@@ -8,7 +8,8 @@ import java.util.List;
 
 public class CalculationImpl implements Calculation {
 
-    private String query = null;
+    private String query;
+    private CalculationType currentCalculationType;
 
     public CalculationImpl(String query) {
         this.query = query;
@@ -17,54 +18,45 @@ public class CalculationImpl implements Calculation {
         @Override
         public Calculation calculate(CalculationType type) {
 
+        this.currentCalculationType = type;
+
         Integer lastOperatorIndex = 0;
         List<OperatorTracker> operatorTrackers = new ArrayList<>();
 
         for (int i = 0; i < query.length(); i++) {
 
-            char currentCharacter = query.charAt(i);
+            Character currentCharacter = query.charAt(i);
 
-            boolean run = false;
+            type = divisionAndMultiplicationHasSamePriority(currentCharacter);
 
-            if (type == CalculationType.DIVISION || type == CalculationType.MULTIPLICATION) {
-
-                if(currentCharacter == CalculationType.DIVISION.getOperatorType() ||currentCharacter == CalculationType.MULTIPLICATION.getOperatorType() ) {
-                type = CalculationType.getTypeDynamicly(currentCharacter);
-                }
-            }
-
-            if (currentCharacter == type.getOperatorType()) {
-                run = true;
-            }
-
-            if (run) {
+            if (isCharacterTheCurrentOperatorType(currentCharacter)) {
 
                 operatorTrackers.add(new OperatorTracker(lastOperatorIndex, i));
 
                 lastOperatorIndex = i + 1;
 
-                for (int j = i + 1; j < query.length(); j++) {
+                    for (int j = i + 1; j < query.length(); j++) {
 
                     char nestedCharacter = query.charAt(j);
 
-                    if (type.containsOperator(nestedCharacter)) {
+                    if (type.isCharacterAnOperator(nestedCharacter)) {
                         operatorTrackers.add(new OperatorTracker(lastOperatorIndex, j));
                         lastOperatorIndex = j + 1;
                         j = query.length();
                     }
                 }
 
-            } else if (type.containsOperator(currentCharacter)) {
+            } else if (type.isCharacterAnOperator(currentCharacter)) {
                 lastOperatorIndex = i + 1;
             }
 
-            if (i == query.length() - 1) {
+            if (isEndOfString(i)) {
                 operatorTrackers.add(new OperatorTracker(lastOperatorIndex, i + 1));
             }
 
-            if (operatorTrackers.size() == 2) {
+            if (isOperatorsResolvable(operatorTrackers)) {
 
-                query = this.resolveCalculation(operatorTrackers, query, type);
+                this.resolveCalculation(operatorTrackers);
 
                 lastOperatorIndex = 0;
                 i = 0;
@@ -75,7 +67,29 @@ public class CalculationImpl implements Calculation {
         return this;
     }
 
-    private String resolveCalculation(List<OperatorTracker> trackers, String query, CalculationType type) {
+    private boolean isOperatorsResolvable(List<OperatorTracker> operatorTrackers) {
+        return operatorTrackers.size() == 2;
+    }
+
+    private boolean isEndOfString(int i) {
+        return i == query.length() - 1;
+    }
+
+    private boolean isCharacterTheCurrentOperatorType(Character currentCharacter) {
+        return currentCharacter == currentCalculationType.getOperatorType();
+    }
+
+    private CalculationType divisionAndMultiplicationHasSamePriority(Character currentCharacter) {
+        if (currentCalculationType == CalculationType.DIVISION || currentCalculationType == CalculationType.MULTIPLICATION) {
+
+        if(currentCharacter == CalculationType.DIVISION.getOperatorType() ||currentCharacter == CalculationType.MULTIPLICATION.getOperatorType() ) {
+        currentCalculationType = CalculationType.getTypeDynamicly(currentCharacter);
+        }
+    }
+        return currentCalculationType;
+    }
+
+    private void resolveCalculation(List<OperatorTracker> trackers) {
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(query);
@@ -83,14 +97,13 @@ public class CalculationImpl implements Calculation {
         Number number1 = Double.valueOf(query.substring(trackers.get(0).getIndexStart(), trackers.get(0).getIndexEnd()));
         Number number2 = Double.valueOf(query.substring(trackers.get(1).getIndexStart(), trackers.get(1).getIndexEnd()));
 
-        String tmp = String.valueOf(type.calculate(number1.doubleValue(), number2.doubleValue()));
+        String tmp = String.valueOf(currentCalculationType.calculate(number1.doubleValue(), number2.doubleValue()));
 
         stringBuilder.replace(trackers.get(0).getIndexStart(), trackers.get(1).getIndexEnd(), tmp);
         query = stringBuilder.toString();
 
-        return query;
+         this.query = query;
     }
-
 
     private boolean isDouble(Number number) {
         if ((number.doubleValue() % 1) == 0) {

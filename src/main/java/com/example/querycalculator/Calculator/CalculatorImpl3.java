@@ -21,15 +21,4 @@ public class CalculatorImpl3 implements Calculator {
 
         return calculation.getResult();
     }
-
-
-
-
-
-
-
-
-
-
-
 }
