@@ -8,8 +8,14 @@ import java.util.List;
 
 public class CalculationImpl implements Calculation {
 
-    @Override
-        public String calculate(String query, CalculationType type) {
+    private String query = null;
+
+    public CalculationImpl(String query) {
+        this.query = query;
+    }
+
+        @Override
+        public Calculation calculate(CalculationType type) {
 
         Integer lastOperatorIndex = 0;
         List<OperatorTracker> operatorTrackers = new ArrayList<>();
@@ -66,7 +72,7 @@ public class CalculationImpl implements Calculation {
             }
         }
 
-        return query;
+        return this;
     }
 
     private String resolveCalculation(List<OperatorTracker> trackers, String query, CalculationType type) {
@@ -83,5 +89,24 @@ public class CalculationImpl implements Calculation {
         query = stringBuilder.toString();
 
         return query;
+    }
+
+
+    private boolean isDouble(Number number) {
+        if ((number.doubleValue() % 1) == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public String getResult() {
+        Number result = Double.valueOf(query);
+        if (isDouble(result)) {
+            return String.valueOf(result.doubleValue());
+        } else {
+            return String.valueOf(result.longValue());
+        }
     }
 }

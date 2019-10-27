@@ -4,5 +4,6 @@ import com.example.querycalculator.Calculator.Calculation.CalculationTypes.Calcu
 
 public interface Calculation {
 
-        String calculate(String query, CalculationType type);
-        }
+        Calculation calculate(CalculationType type);
+        String getResult();
+}
