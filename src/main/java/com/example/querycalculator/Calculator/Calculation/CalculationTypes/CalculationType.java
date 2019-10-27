@@ -2,6 +2,12 @@ package com.example.querycalculator.Calculator.Calculation.CalculationTypes;
 
 public enum CalculationType {
 
+    POWEROF('^') {
+        public Double calculate(double num1, double num2) {
+            return Math.pow(num1, num2);
+        }
+    },
+
     DIVISION('/') {
         public Double calculate(double num1, double num2) {
             return num1 / num2;
@@ -20,11 +26,6 @@ public enum CalculationType {
     SUBSTRACTION('-') {
         public Double calculate(double num1, double num2) {
             return num1 - num2;
-        }
-    },
-    POWEROF('^') {
-        public Double calculate(double num1, double num2) {
-            return Math.pow(num1, num2);
         }
     };
 
@@ -50,7 +51,7 @@ public enum CalculationType {
         return false;
     }
 
-    public static CalculationType getTypeDynamicly(char ch) {
+    public static CalculationType getTypeDynamically(char ch) {
 
         for(CalculationType calculationType: CalculationType.values()) {
 

@@ -20,10 +20,11 @@ public class CalculationImpl implements Calculation {
 
             boolean run = false;
 
-            if (type == CalculationType.DIVISION || type == CalculationType.MULTIPLICATION) {
+            //Division and multiplication has the same priority from left to right - this fixes that behaviour.
+            if (isHigherPriorityOperation(type)) {
 
-                if(currentCharacter == CalculationType.DIVISION.getOperatorType() ||currentCharacter == CalculationType.MULTIPLICATION.getOperatorType() ) {
-                type = CalculationType.getTypeDynamicly(currentCharacter);
+                if(isOfHigherPriorityOperation(currentCharacter)) {
+                    type = CalculationType.getTypeDynamically(currentCharacter);
                 }
             }
 
@@ -67,6 +68,14 @@ public class CalculationImpl implements Calculation {
         }
 
         return query;
+    }
+
+    private boolean isOfHigherPriorityOperation(char currentCharacter) {
+        return currentCharacter == CalculationType.DIVISION.getOperatorType() ||currentCharacter == CalculationType.MULTIPLICATION.getOperatorType();
+    }
+
+    private boolean isHigherPriorityOperation(CalculationType type) {
+        return type == CalculationType.DIVISION || type == CalculationType.MULTIPLICATION;
     }
 
     private String resolveCalculation(List<OperatorTracker> trackers, String query, CalculationType type) {
