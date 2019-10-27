@@ -18,8 +18,23 @@ public class CalculationImpl implements Calculation {
 
             char currentCharacter = query.charAt(i);
 
+            boolean run = false;
+
+            if (type == CalculationType.DIVISION || type == CalculationType.MULTIPLICATION) {
+
+                if(currentCharacter == CalculationType.DIVISION.getOperatorType() ||currentCharacter == CalculationType.MULTIPLICATION.getOperatorType() ) {
+                type = CalculationType.getTypeDynamicly(currentCharacter);
+                }
+            }
+
             if (currentCharacter == type.getOperatorType()) {
+                run = true;
+            }
+
+            if (run) {
+
                 operatorTrackers.add(new OperatorTracker(lastOperatorIndex, i));
+
                 lastOperatorIndex = i + 1;
 
                 for (int j = i + 1; j < query.length(); j++) {

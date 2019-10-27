@@ -49,5 +49,17 @@ public enum CalculationType {
         }
         return false;
     }
+
+    public static CalculationType getTypeDynamicly(char ch) {
+
+        for(CalculationType calculationType: CalculationType.values()) {
+
+            if(ch == calculationType.getOperatorType()) {
+                return calculationType;
+            }
+
+        }
+    return null;
+    }
 }
 

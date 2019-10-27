@@ -12,22 +12,12 @@ public class CalculatorImpl3 implements Calculator {
     public String calculate(String query) {
 
         query = query.replaceAll("[^0-9*-/+^]", "");
-
-        System.out.println(query);
         query = calculation.calculate(query, CalculationType.POWEROF);
-        System.out.println(query);
 
-        query = calculation.calculate(query, CalculationType.DIVISION);
-        System.out.println(query);
-
+        //Division and multiplication is made at the same time. Logic for this is within calculate() implementation.
         query = calculation.calculate(query, CalculationType.MULTIPLICATION);
-        System.out.println(query);
-
         query = calculation.calculate(query, CalculationType.ADDITION);
-        System.out.println(query);
-
         query = calculation.calculate(query, CalculationType.SUBSTRACTION);
-        System.out.println(query);
 
         Number response = Double.valueOf(query);
 
