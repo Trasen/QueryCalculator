@@ -1,7 +1,6 @@
-package com.example.querycalculator.Calculator.Calculation;
+package com.harnosandesport.querycalculator.Calculator.Calculation;
 
-import com.example.querycalculator.Calculator.Calculation.CalculationTypes.CalculationType;
-import org.springframework.expression.spel.ast.Operator;
+import com.harnosandesport.querycalculator.Calculator.Calculation.CalculationTypes.CalculationType;
 
 public class OperatorTracker {
 

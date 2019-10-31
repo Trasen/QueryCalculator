@@ -1,7 +1,7 @@
-package com.example.querycalculator.Calculator.DeprecatedCalculators;
+package com.harnosandesport.querycalculator.Calculator.DeprecatedCalculators;
 
-import com.example.querycalculator.Calculator.Calculator;
-import com.example.querycalculator.Calculator.Calculation.OperatorTracker;
+import com.harnosandesport.querycalculator.Calculator.Calculator;
+import com.harnosandesport.querycalculator.Calculator.Calculation.OperatorTracker;
 
 import java.util.ArrayList;
 import java.util.List;

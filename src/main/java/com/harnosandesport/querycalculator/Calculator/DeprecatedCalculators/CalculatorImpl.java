@@ -1,6 +1,6 @@
-package com.example.querycalculator.Calculator.DeprecatedCalculators;
+package com.harnosandesport.querycalculator.Calculator.DeprecatedCalculators;
 
-import com.example.querycalculator.Calculator.Calculator;
+import com.harnosandesport.querycalculator.Calculator.Calculator;
 
 import java.util.ArrayList;
 import java.util.List;

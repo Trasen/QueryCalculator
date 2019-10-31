@@ -1,6 +1,6 @@
-package com.example.querycalculator.Calculator.Calculation;
+package com.harnosandesport.querycalculator.Calculator.Calculation;
 
-import com.example.querycalculator.Calculator.Calculation.CalculationTypes.CalculationType;
+import com.harnosandesport.querycalculator.Calculator.Calculation.CalculationTypes.CalculationType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,46 +23,46 @@ public class CalculationImpl implements Calculation {
         Integer lastOperatorIndex = 0;
         List<OperatorTracker> operatorTrackers = new ArrayList<>();
 
-        for (int i = 0; i < query.length(); i++) {
+            for (int i = 0; i < query.length(); i++) {
 
-            Character currentCharacter = query.charAt(i);
+                Character currentCharacter = query.charAt(i);
 
-            type = divisionAndMultiplicationHasSamePriority(currentCharacter);
+                type = divisionAndMultiplicationHasSamePriority(currentCharacter);
 
-            if (isCharacterTheCurrentOperatorType(currentCharacter)) {
+                if (isCharacterTheCurrentOperatorType(currentCharacter)) {
 
-                operatorTrackers.add(new OperatorTracker(lastOperatorIndex, i));
+                    operatorTrackers.add(new OperatorTracker(lastOperatorIndex, i));
 
-                lastOperatorIndex = i + 1;
+                    lastOperatorIndex = i + 1;
 
                     for (int j = i + 1; j < query.length(); j++) {
 
-                    char nestedCharacter = query.charAt(j);
+                        char nestedCharacter = query.charAt(j);
 
-                    if (type.isCharacterAnOperator(nestedCharacter)) {
-                        operatorTrackers.add(new OperatorTracker(lastOperatorIndex, j));
-                        lastOperatorIndex = j + 1;
-                        j = query.length();
+                        if (type.isCharacterAnOperator(nestedCharacter)) {
+                            operatorTrackers.add(new OperatorTracker(lastOperatorIndex, j));
+                            lastOperatorIndex = j + 1;
+                            j = query.length();
+                        }
                     }
+
+                } else if (type.isCharacterAnOperator(currentCharacter)) {
+                    lastOperatorIndex = i + 1;
                 }
 
-            } else if (type.isCharacterAnOperator(currentCharacter)) {
-                lastOperatorIndex = i + 1;
+                if (isEndOfString(i)) {
+                    operatorTrackers.add(new OperatorTracker(lastOperatorIndex, i + 1));
+                }
+
+                if (isOperatorsResolvable(operatorTrackers)) {
+
+                    this.resolveCalculation(operatorTrackers);
+
+                    lastOperatorIndex = 0;
+                    i = 0;
+                    operatorTrackers.clear();
+                }
             }
-
-            if (isEndOfString(i)) {
-                operatorTrackers.add(new OperatorTracker(lastOperatorIndex, i + 1));
-            }
-
-            if (isOperatorsResolvable(operatorTrackers)) {
-
-                this.resolveCalculation(operatorTrackers);
-
-                lastOperatorIndex = 0;
-                i = 0;
-                operatorTrackers.clear();
-            }
-        }
 
         return this;
     }

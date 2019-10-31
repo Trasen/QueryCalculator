@@ -1,4 +1,4 @@
-package com.example.querycalculator.Calculator.Calculation.CalculationTypes;
+package com.harnosandesport.querycalculator.Calculator.Calculation.CalculationTypes;
 
 public enum CalculationType {
 

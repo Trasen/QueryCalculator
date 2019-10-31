@@ -1,4 +1,4 @@
-package com.example.querycalculator.Calculator;
+package com.harnosandesport.querycalculator.Calculator;
 
 import org.junit.Test;
 

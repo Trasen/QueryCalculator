@@ -1,7 +1,7 @@
-package com.example.querycalculator.RestControllers;
+package com.harnosandesport.querycalculator.RestControllers;
 
-import com.example.querycalculator.Calculator.Calculator;
-import com.example.querycalculator.Calculator.CalculatorImpl3;
+import com.harnosandesport.querycalculator.Calculator.Calculator;
+import com.harnosandesport.querycalculator.Calculator.CalculatorImpl3;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;

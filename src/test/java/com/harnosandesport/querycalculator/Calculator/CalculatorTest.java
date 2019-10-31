@@ -1,6 +1,6 @@
-package com.example.querycalculator.Calculator;
+package com.harnosandesport.querycalculator.Calculator;
 
-import com.example.querycalculator.Calculator.DeprecatedCalculators.CalculatorImpl;
+import com.harnosandesport.querycalculator.Calculator.DeprecatedCalculators.CalculatorImpl;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
