@@ -20,23 +20,13 @@ public class CalculatorImpl3Test {
     }
 
     @Test
-    public void findExpression() {
+    public void calculateNestedExpressions() {
+        assertEquals("75000", calculator.calculate("(100+200) * (50+200)"));
+    }
 
-        String query = "100+200*300/200*400+100";
-        CalculationImpl calculation = new CalculationImpl(query);
-
-        List<OperatorTracker> trackers = calculation.findExpression(CalculationType.ADDITION);
-
-        System.out.println(query);
-
-        for(OperatorTracker tracker: trackers) {
-
-            System.out.println("Start: " + tracker.getIndexStart() + " End: " + tracker.getIndexEnd());
-            System.out.println(query.substring(tracker.getIndexStart(), tracker.getIndexEnd()));
-
-        }
-
-
+    @Test
+    public void calculateNestedNestedExpressions() {
+        assertEquals("75000", calculator.calculate("(100+(50*4)) * (50+(100+100))"));
     }
 
     @Test

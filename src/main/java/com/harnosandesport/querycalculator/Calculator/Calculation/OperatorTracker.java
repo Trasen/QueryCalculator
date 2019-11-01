@@ -4,8 +4,8 @@ import com.harnosandesport.querycalculator.Calculator.Calculation.CalculationTyp
 
 public class OperatorTracker {
 
-    private int indexStart;
-    private int indexEnd;
+    private Integer indexStart;
+    private Integer indexEnd;
     private CalculationType calculationType;
 
     @Deprecated
@@ -21,11 +21,19 @@ public class OperatorTracker {
 
     public OperatorTracker() {}
 
-    public int getIndexStart() {
+    public Integer getIndexStart() {
         return indexStart;
     }
 
-    public int getIndexEnd() {
+    public Integer getIndexEnd() {
         return indexEnd;
+    }
+
+    public void setIndexStart(int indexStart) {
+        this.indexStart = indexStart;
+    }
+
+    public void setIndexEnd(int indexEnd) {
+        this.indexEnd = indexEnd;
     }
 }
