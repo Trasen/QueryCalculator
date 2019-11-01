@@ -3,6 +3,7 @@ package com.harnosandesport.querycalculator.Calculator;
 import com.harnosandesport.querycalculator.Calculator.Calculation.Calculation;
 import com.harnosandesport.querycalculator.Calculator.Calculation.CalculationImpl;
 import com.harnosandesport.querycalculator.Calculator.Calculation.CalculationTypes.CalculationType;
+import com.harnosandesport.querycalculator.Calculator.Calculation.OperatorTracker;
 
 public class CalculatorImpl3 implements Calculator {
 

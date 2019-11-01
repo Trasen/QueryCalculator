@@ -40,7 +40,7 @@ public enum CalculationType {
         return type;
     }
 
-    public boolean isCharacterAnOperator(char ch) {
+    public static boolean isCharacterAnOperator(char ch) {
 
         for (CalculationType calculationType : CalculationType.values()) {
             if (ch == calculationType.type) {

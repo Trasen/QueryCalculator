@@ -1,6 +1,11 @@
 package com.harnosandesport.querycalculator.Calculator;
 
+import com.harnosandesport.querycalculator.Calculator.Calculation.CalculationImpl;
+import com.harnosandesport.querycalculator.Calculator.Calculation.CalculationTypes.CalculationType;
+import com.harnosandesport.querycalculator.Calculator.Calculation.OperatorTracker;
 import org.junit.Test;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -12,6 +17,26 @@ public class CalculatorImpl3Test {
     public void testCalculatorSingleDivision() {
 
         assertEquals("10", calculator.calculate("100/10"));
+    }
+
+    @Test
+    public void findExpression() {
+
+        String query = "100+200*300/200*400+100";
+        CalculationImpl calculation = new CalculationImpl(query);
+
+        List<OperatorTracker> trackers = calculation.findExpression(CalculationType.ADDITION);
+
+        System.out.println(query);
+
+        for(OperatorTracker tracker: trackers) {
+
+            System.out.println("Start: " + tracker.getIndexStart() + " End: " + tracker.getIndexEnd());
+            System.out.println(query.substring(tracker.getIndexStart(), tracker.getIndexEnd()));
+
+        }
+
+
     }
 
     @Test

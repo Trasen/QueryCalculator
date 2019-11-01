@@ -19,6 +19,8 @@ public class OperatorTracker {
         this.indexEnd = indexEnd;
     }
 
+    public OperatorTracker() {}
+
     public int getIndexStart() {
         return indexStart;
     }

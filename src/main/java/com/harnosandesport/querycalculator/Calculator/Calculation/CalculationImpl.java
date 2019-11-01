@@ -15,7 +15,43 @@ public class CalculationImpl implements Calculation {
         this.query = query;
     }
 
-        @Override
+    public List<OperatorTracker> findExpression(CalculationType type) {
+
+        currentCalculationType = type;
+        List<OperatorTracker> trackers = new ArrayList<>();
+
+        for(int i = 0; i < query.length(); i++) {
+
+            Character ch = query.charAt(i);
+
+            if(isCharacterTheCurrentOperatorType(ch)) {
+                if(trackers.isEmpty()) {
+                trackers.add(new OperatorTracker(0, i));
+                } else {
+                trackers.add(new OperatorTracker(trackers.get(0).getIndexEnd(), i));
+                }
+            }
+
+            if(isAnOperatorButNotTheCurrentOne(type, ch)) {
+                trackers.add(new OperatorTracker(trackers.get(0).getIndexEnd() + 1, i));
+            }
+
+            if(isEndOfString(i)) {
+                trackers.add(new OperatorTracker(trackers.get(2).getIndexEnd(), i));
+            }
+
+            if(trackers.size() == 2) {
+                return trackers;
+            }
+        }
+        return null;
+    }
+
+    private boolean isAnOperatorButNotTheCurrentOne(CalculationType type, Character ch) {
+        return CalculationType.isCharacterAnOperator(ch) && ch != type.getOperatorType();
+    }
+
+    @Override
         public Calculation calculate(CalculationType type) {
 
         this.currentCalculationType = type;
