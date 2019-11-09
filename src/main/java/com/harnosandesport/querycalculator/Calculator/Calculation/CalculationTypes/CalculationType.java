@@ -9,7 +9,7 @@ public enum CalculationType {
     DIVISION('/') {
         public BigDecimal calculate(BigDecimal num1, BigDecimal num2) {
             try {
-            return num1.divide(num2);
+            return num1.divide(num2, MathContext.UNLIMITED);
             } catch(ArithmeticException e) {
                 if(num1.doubleValue() != 0 && num2.doubleValue() != 0) {
                 return num1.divide(num2, RoundingMode.DOWN);
@@ -21,22 +21,22 @@ public enum CalculationType {
     },
     MULTIPLICATION('*') {
         public BigDecimal calculate(BigDecimal num1, BigDecimal num2) {
-            return num1.multiply(num2, MathContext.DECIMAL128);
+            return num1.multiply(num2, MathContext.UNLIMITED);
         }
     },
     ADDITION('+') {
         public BigDecimal calculate(BigDecimal num1, BigDecimal num2) {
-            return num1.add(num2);
+            return num1.add(num2, MathContext.UNLIMITED);
         }
     },
     SUBSTRACTION('-') {
         public BigDecimal calculate(BigDecimal num1, BigDecimal num2) {
-            return num1.subtract(num2);
+            return num1.subtract(num2, MathContext.UNLIMITED);
         }
     },
     POWEROF('^') {
         public BigDecimal calculate(BigDecimal num1, BigDecimal num2) {
-            return num1.pow(num2.intValueExact(), MathContext.DECIMAL128);
+            return num1.pow(num2.intValueExact(), MathContext.UNLIMITED);
         }
     };
 
