@@ -2,6 +2,7 @@ package com.harnosandesport.querycalculator.Calculator.Calculation;
 
 import com.harnosandesport.querycalculator.Calculator.Calculation.CalculationTypes.CalculationType;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +53,7 @@ public class CalculationImpl implements Calculation {
     }
 
     @Override
-        public Calculation calculate(CalculationType type) {
+        public Calculation run(CalculationType type) {
 
         this.currentCalculationType = type;
 
@@ -130,18 +131,17 @@ public class CalculationImpl implements Calculation {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(query);
 
-        Number number1 = Double.valueOf(query.substring(trackers.get(0).getIndexStart(), trackers.get(0).getIndexEnd()));
-        Number number2 = Double.valueOf(query.substring(trackers.get(1).getIndexStart(), trackers.get(1).getIndexEnd()));
+        BigDecimal number1 = new BigDecimal(query.substring(trackers.get(0).getIndexStart(), trackers.get(0).getIndexEnd()));
+        BigDecimal number2 = new BigDecimal(query.substring(trackers.get(1).getIndexStart(), trackers.get(1).getIndexEnd()));
 
-        String tmp = String.valueOf(currentCalculationType.calculate(number1.doubleValue(), number2.doubleValue()));
+        String tmp = String.valueOf(currentCalculationType.calculate(number1, number2));
 
         stringBuilder.replace(trackers.get(0).getIndexStart(), trackers.get(1).getIndexEnd(), tmp);
         query = stringBuilder.toString();
-
-         this.query = query;
+        System.out.println(query);
     }
 
-    private boolean isDouble(Number number) {
+    private boolean isDouble(BigDecimal number) {
         if ((number.doubleValue() % 1) == 0) {
             return false;
         } else {
@@ -151,11 +151,13 @@ public class CalculationImpl implements Calculation {
 
     @Override
     public String getResult() {
-        Number result = Double.valueOf(query);
-        if (isDouble(result)) {
-            return String.valueOf(result.doubleValue());
+         return new BigDecimal(query).toEngineeringString();
+
+
+        /*if (isDouble(result)) {
+            return result.toPlainString();
         } else {
-            return String.valueOf(result.longValue());
-        }
+            return result.toPlainString();
+        } */
     }
 }

@@ -1,8 +1,4 @@
 package com.harnosandesport.querycalculator.Calculator;
-
-import com.harnosandesport.querycalculator.Calculator.Calculation.CalculationImpl;
-import com.harnosandesport.querycalculator.Calculator.Calculation.CalculationTypes.CalculationType;
-import com.harnosandesport.querycalculator.Calculator.Calculation.OperatorTracker;
 import org.junit.Test;
 
 import java.util.List;
@@ -38,13 +34,13 @@ public class CalculatorImpl3Test {
     @Test
     public void testCalculatorMultiDivisionAndMultiplication() {
 
-        assertEquals("100", calculator.calculate("100/10/100*1000"));
+        assertEquals("100.0", calculator.calculate("100/10/100*1000"));
     }
 
     @Test
     public void testCalculatorMultiDivisionMultiplicationAndAddition() {
 
-        assertEquals("2100", calculator.calculate("100/10/100*1000+2000"));
+        assertEquals("2100.0", calculator.calculate("100/10/100*1000+2000"));
     }
 
     @Test
@@ -76,6 +72,10 @@ public class CalculatorImpl3Test {
     @Test
     public void testPowerOf() {
         assertEquals("4", calculator.calculate("2^2"));
+    }
 
+    @Test
+    public void veryLargeValues() {
+        assertEquals("99999999998999900000000001", calculator.calculate("99999999999*999999999999999"));
     }
 }

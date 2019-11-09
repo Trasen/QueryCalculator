@@ -4,6 +4,6 @@ import com.harnosandesport.querycalculator.Calculator.Calculation.CalculationTyp
 
 public interface Calculation {
 
-        Calculation calculate(CalculationType type);
+        Calculation run(CalculationType type);
         String getResult();
 }

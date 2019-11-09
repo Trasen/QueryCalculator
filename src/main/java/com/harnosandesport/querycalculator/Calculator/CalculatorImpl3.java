@@ -11,15 +11,19 @@ public class CalculatorImpl3 implements Calculator {
 @Override
 public String calculate(String query) {
 
-        query = query.replaceAll("[^0-9*-/+^()]", "");
+        query = removeUnsupportedCharacters(query);
 
         query = dealWithNestedCalculations(query);
 
         query = query.replaceAll("[^0-9*-/+^]", "");
 
-
         return doCalculation(query);
 }
+
+        private String removeUnsupportedCharacters(String query) {
+                query = query.replaceAll("[^0-9*-/+^()]", "");
+                return query;
+        }
 
         private String dealWithNestedCalculations(String query) {
                 OperatorTracker tracker;
@@ -67,10 +71,10 @@ public String calculate(String query) {
 
                 Calculation calculation = new CalculationImpl(query);
 
-                calculation.calculate(CalculationType.POWEROF)
-                        .calculate(CalculationType.MULTIPLICATION)
-                        .calculate(CalculationType.ADDITION)
-                        .calculate(CalculationType.SUBSTRACTION);
+                calculation.run(CalculationType.POWEROF)
+                        .run(CalculationType.MULTIPLICATION)
+                        .run(CalculationType.ADDITION)
+                        .run(CalculationType.SUBSTRACTION);
 
                 return calculation.getResult();
         }
