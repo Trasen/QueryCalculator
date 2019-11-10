@@ -62,7 +62,7 @@ public enum CalculationType {
         return false;
     }
 
-    public static CalculationType getTypeDynamicly(char ch) {
+    public static CalculationType getTypeDynamically(char ch) {
 
         for(CalculationType calculationType: CalculationType.values()) {
 

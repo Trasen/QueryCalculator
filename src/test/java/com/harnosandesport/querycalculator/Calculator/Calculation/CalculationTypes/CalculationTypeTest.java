@@ -8,26 +8,26 @@ public class CalculationTypeTest {
 
     @Test
     public void getTypeDynamiclyAddition() {
-    assertEquals(CalculationType.ADDITION, CalculationType.getTypeDynamicly('+'));
+    assertEquals(CalculationType.ADDITION, CalculationType.getTypeDynamically('+'));
     }
 
     @Test
     public void getTypeDynamiclyMultiplication() {
-        assertEquals(CalculationType.MULTIPLICATION, CalculationType.getTypeDynamicly('*'));
+        assertEquals(CalculationType.MULTIPLICATION, CalculationType.getTypeDynamically('*'));
     }
 
     @Test
     public void getTypeDynamiclyDivision() {
-        assertEquals(CalculationType.DIVISION, CalculationType.getTypeDynamicly('/'));
+        assertEquals(CalculationType.DIVISION, CalculationType.getTypeDynamically('/'));
     }
 
     @Test
     public void getTypeDynamiclyPowerOf() {
-        assertEquals(CalculationType.POWEROF, CalculationType.getTypeDynamicly('^'));
+        assertEquals(CalculationType.POWEROF, CalculationType.getTypeDynamically('^'));
     }
 
     @Test
     public void getTypeDynamiclySubstration() {
-        assertEquals(CalculationType.SUBSTRACTION, CalculationType.getTypeDynamicly('-'));
+        assertEquals(CalculationType.SUBSTRACTION, CalculationType.getTypeDynamically('-'));
     }
 }

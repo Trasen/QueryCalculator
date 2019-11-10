@@ -65,7 +65,6 @@ public class CalculatorImpl3Test {
 
     @Test
     public void testCalculatorSubstrationDivisionMultiplicationAndAddition() {
-        //This one is difficult to asses. Using different calculators seems to yield two different results, -7300 and -8500. Not sure what to make of it - leaving it to -8500 until i find out why there are inconsistencies.
         assertEquals("-7300", calculator.calculate("100-100 * 400 / 5 + 600"));
     }
 
@@ -81,6 +80,6 @@ public class CalculatorImpl3Test {
 
     @Test
     public void veryVeryLargeValues() {
-        assertEquals(299999, calculator.calculate("100.0^99999").length());
+        assertEquals(299999, calculator.calculate("10.0^99999").length());
     }
 }

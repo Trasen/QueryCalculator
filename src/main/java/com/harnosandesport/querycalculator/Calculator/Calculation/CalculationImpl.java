@@ -37,7 +37,7 @@ public class CalculationImpl implements Calculation {
                 trackers.add(new OperatorTracker(trackers.get(0).getIndexEnd() + 1, i));
             }
 
-            if(isEndOfString(i)) {
+            if(isEndOfExpression(i)) {
                 trackers.add(new OperatorTracker(trackers.get(2).getIndexEnd(), i));
             }
 
@@ -60,20 +60,19 @@ public class CalculationImpl implements Calculation {
         Integer lastOperatorIndex = 0;
         List<OperatorTracker> operatorTrackers = new ArrayList<>();
 
-            for (int i = 0; i < query.length(); i++) {
+            for (int characterPositionInString = 0; characterPositionInString < query.length(); characterPositionInString++) {
 
-                Character currentCharacter = query.charAt(i);
+                Character currentCharacter = query.charAt(characterPositionInString);
 
-                type = divisionAndMultiplicationHasSamePriority(currentCharacter);
-                type = additionAndSubstrationHasSamePriority(currentCharacter);
+                type = samePriorityCalculations(currentCharacter);
 
                 if (isCharacterTheCurrentOperatorType(currentCharacter)) {
 
-                    operatorTrackers.add(new OperatorTracker(lastOperatorIndex, i));
+                    operatorTrackers.add(new OperatorTracker(lastOperatorIndex, characterPositionInString));
 
-                    lastOperatorIndex = i + 1;
+                    lastOperatorIndex = characterPositionInString + 1;
 
-                    for (int j = i + 1; j < query.length(); j++) {
+                    for (int j = characterPositionInString + 1; j < query.length(); j++) {
 
                         char nestedCharacter = query.charAt(j);
 
@@ -85,11 +84,11 @@ public class CalculationImpl implements Calculation {
                     }
 
                 } else if (type.isCharacterAnOperator(currentCharacter)) {
-                    lastOperatorIndex = i + 1;
+                    lastOperatorIndex = characterPositionInString + 1;
                 }
 
-                if (isEndOfString(i)) {
-                    operatorTrackers.add(new OperatorTracker(lastOperatorIndex, i + 1));
+                if (isEndOfExpression(characterPositionInString)) {
+                    operatorTrackers.add(new OperatorTracker(lastOperatorIndex, characterPositionInString + 1));
                 }
 
                 if (isOperatorsResolvable(operatorTrackers)) {
@@ -97,7 +96,7 @@ public class CalculationImpl implements Calculation {
                     this.resolveCalculation(operatorTrackers);
 
                     lastOperatorIndex = 0;
-                    i = 0;
+                    characterPositionInString = 0;
                     operatorTrackers.clear();
                 }
             }
@@ -109,7 +108,7 @@ public class CalculationImpl implements Calculation {
         return operatorTrackers.size() == 2;
     }
 
-    private boolean isEndOfString(int i) {
+    private boolean isEndOfExpression(int i) {
         return i == query.length() - 1;
     }
 
@@ -117,24 +116,21 @@ public class CalculationImpl implements Calculation {
         return currentCharacter == currentCalculationType.getOperatorType();
     }
 
-    private CalculationType additionAndSubstrationHasSamePriority(Character currentCharacter) {
-        if (currentCalculationType == CalculationType.ADDITION || currentCalculationType == CalculationType.SUBSTRACTION) {
+    private CalculationType samePriorityCalculations(Character currentCharacter) {
 
-            if(currentCharacter == CalculationType.ADDITION.getOperatorType() ||currentCharacter == CalculationType.SUBSTRACTION.getOperatorType() ) {
-                currentCalculationType = CalculationType.getTypeDynamicly(currentCharacter);
+        samePriorityCalculation(currentCharacter, CalculationType.DIVISION, CalculationType.MULTIPLICATION);
+        samePriorityCalculation(currentCharacter, CalculationType.ADDITION, CalculationType.SUBSTRACTION);
+
+        return currentCalculationType;
+    }
+
+    private void samePriorityCalculation(Character currentCharacter, CalculationType firstType, CalculationType secondType) {
+        if (currentCalculationType == firstType || currentCalculationType == secondType) {
+
+            if (currentCharacter == firstType.getOperatorType() || currentCharacter == secondType.getOperatorType()) {
+                currentCalculationType = CalculationType.getTypeDynamically(currentCharacter);
             }
         }
-        return currentCalculationType;
-    }
-
-    private CalculationType divisionAndMultiplicationHasSamePriority(Character currentCharacter) {
-        if (currentCalculationType == CalculationType.DIVISION || currentCalculationType == CalculationType.MULTIPLICATION) {
-
-        if(currentCharacter == CalculationType.DIVISION.getOperatorType() ||currentCharacter == CalculationType.MULTIPLICATION.getOperatorType() ) {
-        currentCalculationType = CalculationType.getTypeDynamicly(currentCharacter);
-        }
-    }
-        return currentCalculationType;
     }
 
     private void resolveCalculation(List<OperatorTracker> trackers) {
@@ -152,23 +148,8 @@ public class CalculationImpl implements Calculation {
         System.out.println(query);
     }
 
-    private boolean isDouble(BigDecimal number) {
-        if ((number.doubleValue() % 1) == 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     @Override
     public String getResult() {
          return new BigDecimal(query).toEngineeringString();
-
-
-        /*if (isDouble(result)) {
-            return result.toPlainString();
-        } else {
-            return result.toPlainString();
-        } */
     }
 }

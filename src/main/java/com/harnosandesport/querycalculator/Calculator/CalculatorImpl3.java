@@ -74,7 +74,7 @@ public String calculate(String query) {
                 calculation.run(CalculationType.POWEROF)
                         .run(CalculationType.MULTIPLICATION)
                         .run(CalculationType.ADDITION);
-                
+
                 return calculation.getResult();
         }
 
