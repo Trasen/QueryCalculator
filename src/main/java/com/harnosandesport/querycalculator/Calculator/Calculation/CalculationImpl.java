@@ -65,6 +65,7 @@ public class CalculationImpl implements Calculation {
                 Character currentCharacter = query.charAt(i);
 
                 type = divisionAndMultiplicationHasSamePriority(currentCharacter);
+                type = additionAndSubstrationHasSamePriority(currentCharacter);
 
                 if (isCharacterTheCurrentOperatorType(currentCharacter)) {
 
@@ -114,6 +115,16 @@ public class CalculationImpl implements Calculation {
 
     private boolean isCharacterTheCurrentOperatorType(Character currentCharacter) {
         return currentCharacter == currentCalculationType.getOperatorType();
+    }
+
+    private CalculationType additionAndSubstrationHasSamePriority(Character currentCharacter) {
+        if (currentCalculationType == CalculationType.ADDITION || currentCalculationType == CalculationType.SUBSTRACTION) {
+
+            if(currentCharacter == CalculationType.ADDITION.getOperatorType() ||currentCharacter == CalculationType.SUBSTRACTION.getOperatorType() ) {
+                currentCalculationType = CalculationType.getTypeDynamicly(currentCharacter);
+            }
+        }
+        return currentCalculationType;
     }
 
     private CalculationType divisionAndMultiplicationHasSamePriority(Character currentCharacter) {
