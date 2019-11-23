@@ -3,7 +3,7 @@ package com.harnosandesport.querycalculator.Services;
 import com.harnosandesport.querycalculator.Services.Spring.Spring;
 import com.harnosandesport.querycalculator.Services.Terminal.Terminal;
 
-enum ServiceType {
+public enum ServiceType {
 
     SPRING("spring") {
 
