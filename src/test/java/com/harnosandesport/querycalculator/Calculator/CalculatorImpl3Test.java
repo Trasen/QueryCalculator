@@ -80,6 +80,6 @@ public class CalculatorImpl3Test {
 
     @Test
     public void veryVeryLargeValues() {
-        assertEquals(299999, calculator.calculate("10.0^99999").length());
+        assertEquals(299999, calculator.calculate("100.0^99999").length());
     }
 }

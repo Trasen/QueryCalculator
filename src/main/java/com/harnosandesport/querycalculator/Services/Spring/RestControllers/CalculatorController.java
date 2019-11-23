@@ -1,4 +1,4 @@
-package com.harnosandesport.querycalculator.RestControllers;
+package com.harnosandesport.querycalculator.Services.Spring.RestControllers;
 
 import com.harnosandesport.querycalculator.Calculator.Calculator;
 import com.harnosandesport.querycalculator.Calculator.CalculatorImpl3;
