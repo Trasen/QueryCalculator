@@ -13,7 +13,7 @@ public class Main {
         List<String> arguments = Arrays.asList(args);
 
         StringBuilder builder = new StringBuilder();
-        StartService startService = ServiceType.getStartServiceDynamically((arguments.size() != 0?arguments.get(1):""));
+        StartService startService = ServiceType.getStartServiceDynamically("terminal");
         startService.run(args);
     }
 }

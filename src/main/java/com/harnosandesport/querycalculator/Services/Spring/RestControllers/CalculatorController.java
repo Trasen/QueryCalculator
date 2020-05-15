@@ -2,24 +2,22 @@ package com.harnosandesport.querycalculator.Services.Spring.RestControllers;
 
 import com.harnosandesport.querycalculator.Calculator.Calculator;
 import com.harnosandesport.querycalculator.Calculator.CalculatorImpl3;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.QueryParam;
 
-@RestController
+@Path("/calculator")
 public class CalculatorController {
 
-    @RequestMapping(value = "/calculator", method = RequestMethod.GET)
-    public String calculator(@RequestParam(value = "query", defaultValue = "0") String query, HttpServletRequest request) {
+    @GET
+    public String calculator(@QueryParam("query") String query) {
 
         Calculator calculator = new CalculatorImpl3();
         //Using the request queryString seems to be the only way for SpringBoot to allow '+' signs to be sent. Query will filter this away.
-        String pureQuery = request.getQueryString();
-        pureQuery = pureQuery.replace("pwr", "^");
-        System.out.println(pureQuery);
-        return calculator.calculate(pureQuery);
+        //String pureQuery = request.getQueryString();
+        //pureQuery = pureQuery.replace("pwr", "^");
+        System.out.println(query);
+        return calculator.calculate(query);
     }
 }

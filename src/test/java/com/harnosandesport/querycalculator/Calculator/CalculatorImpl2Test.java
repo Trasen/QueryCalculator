@@ -12,6 +12,7 @@ public class CalculatorImpl2Test {
     Calculator calculator = new CalculatorImpl2();
 
 
+
     @Test
     public void testCalculatorSingleDivision() {
 
