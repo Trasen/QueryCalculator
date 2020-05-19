@@ -1,9 +1,10 @@
 package com.harnosandesport.querycalculator.Calculator;
 
 import com.harnosandesport.querycalculator.Calculator.DeprecatedCalculators.CalculatorImpl;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 @Deprecated
 public class CalculatorTest {
